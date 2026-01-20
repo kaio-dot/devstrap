@@ -7,9 +7,10 @@ import (
 )
 
 var installCmd = &cobra.Command{
-	Use:   "install",
-	Short: "Instala a ferramenta em ambiente local",
-	Args:  cobra.ExactArgs(1),
+	Use:     "install",
+	Aliases: []string{"i"},
+	Short:   "Instala a ferramenta em ambiente local",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 
 		tool := args[0]
