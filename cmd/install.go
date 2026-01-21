@@ -3,6 +3,8 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/kaio-dot/devstrap/internal/providers"
+
 	"github.com/spf13/cobra"
 )
 
@@ -14,11 +16,22 @@ var installCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		tool := args[0]
-		fmt.Println("Iniciando a instalação")
-		fmt.Println("Instalando:", tool)
+
+		provider, ok := providers.GetProvider(tool)
+
+		if !ok {
+			fmt.Println("Ferramenta ainda não suportada.Tenha paciência dev!", tool)
+			return
+		}
+
+		err := provider.Install("latest")
+		if err != nil {
+			fmt.Println("Não sei por que, mas deu erro. Adivinha aí:", err)
+		}
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(installCmd)
+	fmt.Println("NodeProvider registrado")
+	providers.Register(&NodeProvider{})
 }
