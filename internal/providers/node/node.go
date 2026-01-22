@@ -1,15 +1,8 @@
 package node
 
-import (
-	"fmt"
-
-	"github.com/kaio-dot/devstrap/internal/providers"
-)
+import "fmt"
 
 type NodeProvider struct{}
-
-// Garantir conformidade com a interface Provider
-var _ providers.Provider = (*NodeProvider)(nil)
 
 func (n *NodeProvider) Name() string {
 	return "node"
@@ -42,6 +35,4 @@ func (n *NodeProvider) Uninstall(version string) error {
 	return nil
 }
 
-func init() {
-	providers.RegisterProvider(&NodeProvider{})
-}
+var Provider = &NodeProvider{}

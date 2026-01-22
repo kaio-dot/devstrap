@@ -9,7 +9,7 @@ import (
 )
 
 var installCmd = &cobra.Command{
-	Use:     "install",
+	Use:     "install [tool]",
 	Aliases: []string{"i"},
 	Short:   "Instala a ferramenta em ambiente local",
 	Args:    cobra.ExactArgs(1),
@@ -21,6 +21,9 @@ var installCmd = &cobra.Command{
 
 		if !ok {
 			fmt.Println("Ferramenta ainda não suportada.Tenha paciência dev!", tool)
+			fmt.Printf("tool: '%s'\n", tool)
+			fmt.Printf("registry: %#v\n", providers.DebugRegistry())
+
 			return
 		}
 
@@ -33,5 +36,5 @@ var installCmd = &cobra.Command{
 
 func init() {
 	fmt.Println("NodeProvider registrado")
-	providers.Register(&NodeProvider{})
+	rootCmd.AddCommand(installCmd)
 }
