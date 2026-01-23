@@ -6,8 +6,8 @@ type OS string
 type Arch string
 
 const (
-	Windows OS = "Windows"
-	Linux   OS = "Linux"
+	Windows OS = "windows"
+	Linux   OS = "linux"
 )
 
 const (
