@@ -1,4 +1,4 @@
-<img width="576" height="198" alt="devstrap" src="https://github.com/user-attachments/assets/0226bba6-df5a-42ee-9b25-d8b44598e4a9" />
+<img width="548" height="177" alt="devstrap" src="https://github.com/user-attachments/assets/5d24e6d4-a8df-4f7c-973d-a6dd01079d6a" />
 
 <br>
 
