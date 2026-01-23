@@ -34,7 +34,7 @@ var installCmd = &cobra.Command{
 			return
 		}
 
-		err := provider.Install("latest")
+		err := provider.Install("latest", p)
 		if err != nil {
 			fmt.Println("Não sei por que, mas deu erro. Adivinha aí:", err)
 		}

@@ -12,7 +12,6 @@ const (
 
 const (
 	AMD64 Arch = "amd64"
-	AMD32 Arch = "amd32"
 	ARM64 Arch = "arm64"
 	ARM32 Arch = "arm32"
 )
