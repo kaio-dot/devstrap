@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-// ZipDownload builds a download path for a tool version under the temp directory.
+// ZipDownload constrói ao caminho para o arquivo zip baixado
 func ZipDownload(tool, version string) string {
 	if version == "" {
 		version = "latest"
@@ -14,4 +14,15 @@ func ZipDownload(tool, version string) string {
 
 	fileName := fmt.Sprintf("%s-%s.zip", tool, version)
 	return filepath.Join(os.TempDir(), "devstrap", "downloads", fileName)
+}
+
+func ToolsDir(tool, version string) string {
+	if version == "" {
+		version = "latest"
+	}
+	home, err := os.UserHomeDir()
+	if err != nil {
+		panic(err)
+	}
+	return filepath.Join(home, ".devstrap", "tools", tool, version)
 }

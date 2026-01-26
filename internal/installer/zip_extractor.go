@@ -8,6 +8,10 @@ import (
 )
 
 func ExtractZip(zipPath, destDir string) error {
+	if err := os.MkdirAll(destDir, 0755); err != nil {
+		return err
+	}
+
 	r, err := zip.OpenReader(zipPath)
 	if err != nil {
 		return err
