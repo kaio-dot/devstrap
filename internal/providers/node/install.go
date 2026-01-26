@@ -30,9 +30,15 @@ func (n *NodeProvider) Install(version string, p platform.Platform) error {
 	}
 
 	zipPath := paths.ZipDownload("node", version)
+	destDir := paths.ToolsDir("node", version)
 
 	_, err := installer.DownloadTool(url, zipPath)
 	if err != nil {
+		return err
+	}
+	fmt.Println("Download concluído:", zipPath)
+
+	if err := installer.ExtractZip(zipPath, destDir); err != nil {
 		return err
 	}
 

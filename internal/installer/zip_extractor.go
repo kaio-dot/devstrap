@@ -2,6 +2,7 @@ package installer
 
 import (
 	"archive/zip"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
@@ -11,6 +12,9 @@ func ExtractZip(zipPath, destDir string) error {
 	if err := os.MkdirAll(destDir, 0755); err != nil {
 		return err
 	}
+
+	fmt.Println("Extraindo pacote:", zipPath)
+	fmt.Println("Destino da extração:", destDir)
 
 	r, err := zip.OpenReader(zipPath)
 	if err != nil {
@@ -49,5 +53,6 @@ func ExtractZip(zipPath, destDir string) error {
 		}
 	}
 
+	fmt.Println("Extração concluída para:", destDir)
 	return nil
 }
