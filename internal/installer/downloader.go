@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"github.com/kaio-dot/devstrap/internal/ui"
 )
 
 func DownloadTool(url, destPath string) (string, error) {
@@ -29,11 +31,27 @@ func DownloadTool(url, destPath string) (string, error) {
 	}
 	defer out.Close()
 
-	_, err = io.Copy(out, resp.Body)
+	progressBar := ui.NewProgressBar(resp.ContentLength, 30)
+	counter := &WriteCounter{Bar: progressBar}
+
+	_, err = io.Copy(out, io.TeeReader(resp.Body, counter))
 	if err != nil {
 		return "", err
 	}
 
+	progressBar.Complete()
 	fmt.Println("Download concluído:", destPath)
 	return destPath, nil
+}
+
+type WriteCounter struct {
+	Bar        *ui.ProgressBar
+	Downloaded int64
+}
+
+func (wc *WriteCounter) Write(p []byte) (int, error) {
+	n := len(p)
+	wc.Downloaded += int64(n)
+	wc.Bar.Render(wc.Downloaded)
+	return n, nil
 }
