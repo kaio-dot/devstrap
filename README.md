@@ -7,9 +7,9 @@
 
 # devstrap 🚀
 
-> Um canivete suíço para desenvolvedores: inicialize, padronize e acelere seus projetos sem dor de cabeça.
+> Inicialize seus projetos sem dificuldade usando o `devstrap`. Instale ferramentas de maneira fácil e aumente sua produtividade!
 
-`devstrap` é uma **CLI escrita em Go** (usando CobraCLI) focada em **bootstrap de projetos**, **produtividade** e **boas práticas** desde o primeiro commit. A ideia é simples: menos tempo configurando, mais tempo construindo.
+`devstrap` é uma **CLI escrita em Go** focada em **bootstrap de projetos**, **produtividade** e **boas práticas** desde o primeiro commit. A ideia é simples: menos tempo configurando, mais tempo construindo.
 
 ---
 
@@ -17,19 +17,11 @@
 
 Uma ferramenta de linha de comando que:
 
-* Cria estruturas de projetos rapidamente
-* Aplica padrões (lint, git, envs, scripts)
-* Centraliza comandos comuns de setup
-* Evita aquele ritual chato de copiar configs de projetos antigos
+* Permite instalar diversas ferramentas disponíveis
+* Linguagens de programação, ferramentas de infra, cloud, etc
 
 ---
 
-## 📦 Instalação
-
-### Pré-requisitos
-
-* Go **1.21+**
-* Git
 
 ### Instalar via Go
 
@@ -42,26 +34,15 @@ Ou, para desenvolvimento local:
 ```bash
 git clone https://github.com/kaio-dot/devstrap.git
 cd devstrap
-go build -o devstrap
+go build -o devstrap.exe
 ```
 
 ---
 
 ## 🛠️ Stack
 
-* **Go** — performance, binário único, sem drama
-* **Cobra** — CLI elegante e extensível
-* **Go Modules** — dependências sob controle
-
----
-
-## 🗺️ Roadmap (em construção)
-
-* [ ] Subcomando `init` (bootstrap de projetos)
-* [ ] Templates (Node, Go, Python, etc)
-* [ ] Integração com Git (hooks, commits iniciais)
-* [ ] Configuração de lint/format automática
-* [ ] Modo interativo
+* **Go** — go1.25.6 windows/amd64
+* **Cobra** — github.com/spf13/cobra
 
 ---
 
@@ -91,7 +72,7 @@ MIT. Use, modifique, distribua. Só não diga que foi ideia sua 😄
 
 Projeto em evolução constante. Se algo quebrar, provavelmente foi de propósito.
 
-> *“Stay sharp.”* — devstrap
+> *“Be greater than average.”* 
 
 
 
