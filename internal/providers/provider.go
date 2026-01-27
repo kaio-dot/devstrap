@@ -1,6 +1,9 @@
 package providers
 
-import "github.com/kaio-dot/devstrap/internal/platform"
+import (
+	"github.com/kaio-dot/devstrap/internal/platform"
+	"github.com/kaio-dot/devstrap/internal/providers/node"
+)
 
 type Provider interface {
 	Name() string
@@ -9,4 +12,5 @@ type Provider interface {
 	Update(version string, p platform.Platform) error
 	Version(version string) (string, error)
 	Uninstall(version string, p platform.Platform) error
+	ListAvailableVersions(limit int, onlyLTS bool) ([]node.NodeRelease, error)
 }

@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/kaio-dot/devstrap/cli"
 	"github.com/kaio-dot/devstrap/internal/platform"
 	"github.com/kaio-dot/devstrap/internal/providers"
 
@@ -10,9 +11,10 @@ import (
 )
 
 var installCmd = &cobra.Command{
-	Use:     "install [tool]",
+	Use:     "install [tool][@version]",
 	Aliases: []string{"i"},
 	Short:   "Instala a ferramenta em ambiente local",
+	Long:    "Instala uma ferramenta. Use: devstrap install node ou devstrap install node@20.11.0",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		p := platform.DetectPlatform()
@@ -22,7 +24,7 @@ var installCmd = &cobra.Command{
 			return
 		}
 
-		tool := args[0]
+		tool, version := cli.ParseToolVersion(args[0])
 
 		provider, ok := providers.GetProvider(tool)
 
@@ -34,7 +36,8 @@ var installCmd = &cobra.Command{
 			return
 		}
 
-		err := provider.Install("latest", p)
+		fmt.Printf("Instalando %s versão %s...\n", tool, version)
+		err := provider.Install(version, p)
 		if err != nil {
 			fmt.Println("Não sei por que, mas deu erro. Adivinha aí:", err)
 		}
@@ -42,6 +45,5 @@ var installCmd = &cobra.Command{
 }
 
 func init() {
-	fmt.Println("NodeProvider registrado")
 	rootCmd.AddCommand(installCmd)
 }
