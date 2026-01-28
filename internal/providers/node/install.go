@@ -65,5 +65,5 @@ func (n *NodeProvider) Install(version string, p platform.Platform) error {
 
 	fmt.Println("Instalando versão do Node:", url)
 
-	return nil
+	return installer.InstallTool(destDir, p)
 }
